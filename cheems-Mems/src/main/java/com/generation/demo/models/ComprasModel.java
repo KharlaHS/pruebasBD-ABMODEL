@@ -1,12 +1,21 @@
 package com.generation.demo.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "Compras")
@@ -16,13 +25,65 @@ public class ComprasModel {
 	@Column(unique = true, nullable = false)
 	private Integer id;
 	
-	@JoinColumn(name = "Usuario_id", referencedColumnName = "id",nullable = false)
-	private int usuario_id;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
+	private UsuariosModel usuarios;
 	
 	@Column(name = "total", nullable = false)
 	private int total;
 	
 	@Column(name = "Estatus", nullable = false, length = 255)
 	private String Estatus;
+	
+	//@OneToMany(mappedBy = "envio", cascade = CascadeType.ALL)
+	//private List<EnvioModel> envio;
+
+	public ComprasModel() {
+
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+
+	public UsuariosModel getUsuario() {
+		return usuarios;
+	}
+
+	public void setUsuario(UsuariosModel usuario) {
+		this.usuarios = usuario;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public String getEstatus() {
+		return Estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		Estatus = estatus;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "ComprasModel [id=" + id + ", usuario=" + usuarios + ", total=" + total + ", Estatus=" + Estatus + "]";
+	}
+
+	
+	
 	
 }

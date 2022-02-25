@@ -1,14 +1,18 @@
 package com.generation.demo.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "usuarios")
 public class UsuariosModel {
 	
 	@Id
@@ -28,7 +32,9 @@ public class UsuariosModel {
 	@Column(name = "Telefono", nullable = false, length = 15)
 	private String telefono;
 	
-	
+	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+	private List<ComprasModel> compras;
+
 
 	public UsuariosModel() {
 		
@@ -72,6 +78,14 @@ public class UsuariosModel {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public List<ComprasModel> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(List<ComprasModel> compras) {
+		this.compras = compras;
 	}
 
 	@Override

@@ -3,9 +3,9 @@ package com.generation.demo.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.generation.demo.models.ComprasModel;
+import com.generation.demo.models.EnvioModel;
 
 @Repository
-public interface ComprasRepository extends JpaRepository<ComprasModel, Integer> {
+public interface EnvioRepository extends JpaRepository<EnvioModel, Integer> {
 
 }
