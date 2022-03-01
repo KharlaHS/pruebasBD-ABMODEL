@@ -36,8 +36,8 @@ public class ComprasModel {
 	@Column(name = "Estatus", nullable = false, length = 255)
 	private String Estatus;
 	
-	//@OneToMany(mappedBy = "envio", cascade = CascadeType.ALL)
-	//private List<EnvioModel> envio;
+	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
+	private List<ComprasProductoModel> productos;
 
 	public ComprasModel() {
 
@@ -77,6 +77,21 @@ public class ComprasModel {
 	}
 
 
+	public UsuariosModel getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(UsuariosModel usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public List<ComprasProductoModel> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<ComprasProductoModel> productos) {
+		this.productos = productos;
+	}
 
 	@Override
 	public String toString() {
